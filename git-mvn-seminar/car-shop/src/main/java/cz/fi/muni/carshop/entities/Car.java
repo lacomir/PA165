@@ -10,6 +10,7 @@ public class Car {
 	private CarTypes type;
 	private int constructionYear;
 	private int price;
+        private double engineVolume;
 
 	public Car(Color color, CarTypes type, int constructionYear, int price) {
 		super();
@@ -42,6 +43,20 @@ public class Car {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+        /**
+         * @return the engineVolume
+         */
+        public double getEngineVolume() {
+            return engineVolume;
+        }
+
+        /**
+         * @param engineVolume the engineVolume to set
+         */
+        public void setEngineVolume(double engineVolume) {
+            this.engineVolume = engineVolume;
+        }
 	
 	
 	
