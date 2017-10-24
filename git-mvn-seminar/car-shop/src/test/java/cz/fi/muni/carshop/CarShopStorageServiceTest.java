@@ -44,6 +44,45 @@ public class CarShopStorageServiceTest {
             Assert.assertEquals(0, CarShopStorage.getInstancce().getCars().size());
 	}
         
+        @Test
+	public void testSellCarEmptyList() throws RequestedCarNotFoundException {
+                     
+            thrown.reportMissingExceptionWithMessage("We expect exception on empty car list").expect(RequestedCarNotFoundException.class);
+            
+            CarShopStorage.getInstancce().getCars().clear();
+            Car newCar = new Car(Color.BLACK, CarTypes.AUDI, 2016, 899000);
+            
+            service.sellCar(newCar);
+	}
+        
+        @Test
+	public void testSellCarEmptyCarCategory() throws RequestedCarNotFoundException {
+                     
+            thrown.reportMissingExceptionWithMessage("We expect exception on empty car category").expect(RequestedCarNotFoundException.class);
+            
+            CarShopStorage.getInstancce().getCars().clear();
+            Car newCar = new Car(Color.BLACK, CarTypes.BMW, 2016, 899000);
+            service.addCarToStorage(newCar);
+            
+            Car sellCar = new Car(Color.BLACK, CarTypes.AUDI, 2016, 20000);           
+            service.sellCar(sellCar);
+	}
+        
+        
+        @Test
+	public void testSellCarNotSuccessful() throws RequestedCarNotFoundException {
+                     
+            CarShopStorage.getInstancce().getCars().clear();
+            Car newCar = new Car(Color.WHITE, CarTypes.AUDI, 2014, 100000);
+            service.addCarToStorage(newCar);
+
+            thrown.reportMissingExceptionWithMessage("We expect exception when not existing in list").expect(RequestedCarNotFoundException.class);
+            
+            Car sellCar = new Car(Color.BLACK, CarTypes.AUDI, 2016, 20000);           
+            service.sellCar(sellCar);
+
+	}
+        
 	@Test()
 	public void testPriceCantBeNegative() {
 		// JUnit 4.11
@@ -52,6 +91,16 @@ public class CarShopStorageServiceTest {
 		 thrown.reportMissingExceptionWithMessage("We expect exception on negative price").expect(IllegalArgumentException.class);
 
 		service.addCarToStorage(new Car(Color.BLACK, CarTypes.AUDI, 2016, -1));
+	}
+        
+        @Test()
+	public void testaddCarCannotBeNull() {
+		// JUnit 4.11
+		//thrown.expect(IllegalArgumentException.class);
+		// JUnit 4.12
+		 thrown.reportMissingExceptionWithMessage("We expect exception on null added car").expect(IllegalArgumentException.class);
+
+		service.addCarToStorage(null);
 	}
 
 	@Test
