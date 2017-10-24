@@ -11,6 +11,7 @@ public class Car {
 	private int constructionYear;
 	private int price;
         private double engineVolume;
+        private double fuelConsumption;
 
 	public Car(Color color, CarTypes type, int constructionYear, int price) {
 		super();
@@ -56,6 +57,20 @@ public class Car {
          */
         public void setEngineVolume(double engineVolume) {
             this.engineVolume = engineVolume;
+        }
+
+        /**
+         * @return the fuelConsumption
+         */
+        public double getFuelConsumption() {
+            return fuelConsumption;
+        }
+
+        /**
+         * @param fuelConsumption the fuelConsumption to set
+         */
+        public void setFuelConsumption(double fuelConsumption) {
+            this.fuelConsumption = fuelConsumption;
         }
 	
 	
